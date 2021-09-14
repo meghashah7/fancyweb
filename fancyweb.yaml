@@ -27,27 +27,15 @@ apiVersion: v1
 metadata:
   name: fancyweb-server
 spec:
+  type: NodePort
   selector:
     run: fancyweb-server
   ports:
   # Default port used by the image
-  - port: 5678
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: fancyweb-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - pathType: Prefix
-        path: "/fancyweb"
-        backend:
-          service:
-            name: fancyweb-server
-            port:
-              number: 5678
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30000
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
