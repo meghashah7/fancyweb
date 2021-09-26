@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  creationTimestamp: "2021-09-26T07:44:12Z"
+  generation: 6
+  labels:
+    release: prometheus
+    run: fancyweb-server
+  name: fancyweb-servicemonitor
+  namespace: monitoring
+  resourceVersion: "45687"
+  selfLink: /apis/monitoring.coreos.com/v1/namespaces/monitoring/servicemonitors/fancyweb-servicemonitor
+  uid: de3b37de-ec4e-49c3-ac80-4ec35924a5db
+spec:
+  endpoints:
+  - interval: 15s
+    path: /prometheus
+    port: web
+  namespaceSelector:
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      run: fancyweb-server
