@@ -1,5 +1,5 @@
-# fancyweb
-fancyweb
+# goweb
+goweb
 
 Pre requisite:
 
