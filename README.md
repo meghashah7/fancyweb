@@ -6,13 +6,12 @@ Pre requisite:
 On the laptop a single node cluster was set up using kind.
 the configuration file for kind is : cluster.yaml
 Important commands:
-kind cluster create -f cluster.yaml
+kind create cluster --config=config.yaml
 
 Installed kubectl
 Installed metrics-server for the hpa to work
-command: git clone https://github.com/kubernetes-sigsmetrics-server.git
+command: kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
-kubectl apply -f components.yaml
 
 Next run
 kubectl create -f fancweb.yaml
@@ -38,9 +37,10 @@ kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin
 PROMETHEUS and GRAFANA setup:
 I used helm to install prometheus and grafana
 Commands:
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
 helm repo update
 helm install prometheus stable/prometheus-operator --namespace monitoring
+
 
 Next in order for prometheus to scrape the fancyweb-server, I created a ServiceMonitor with the correct labels: servicemonitor.yaml
 
@@ -62,8 +62,5 @@ From grafana, I have set up the datasource as prometheus and then I created the 
 I had setup the alerts in alert page on the same dashboard. ( I have not tested the alerts as I did not configure SMTP)
 In order to see the number of pods of fanyweb-server running, I browsed to the built-in Dashboard : Namespace(Workload)
 
-I thoroughly enjoyed the assignment. :-)
-
-Thank you!
 
 
