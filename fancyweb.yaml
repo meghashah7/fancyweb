@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: fancyweb-server
-        image: meghashah/fancyweb:latest
+        image: ronaksh/fancyweb:latest
         resources:
           limits:
             cpu: 500m
